@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Deployment Automation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #222;
+            color: #0f0;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .box {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>Application Deployment Automation using Jenkins</h1>
+    <p>
+        Application deployment currently requires manual intervention, causing delays and human errors.
+        There is a need to automate the entire deployment pipeline using Jenkins to ensure consistency,
+        speed, and reliability of application releases.
+    </p>
+</div>
+
+<div class="box">
+    <h2>AIM</h2>
+    <p>
+        To configure Jenkins jobs (freestyle and pipeline) to automate application deployment,
+        enabling automatic deployment after every successful build and monitoring the deployment
+        status through console logs and build history.
+    </p>
+</div>
+
+<div class="box">
+    <h2>PROCEDURE</h2>
+
+    <h3>Overall Flow</h3>
+    <pre>
+[ Code Commit / Manual Trigger ]
+        ↓
+[ Jenkins Job (Freestyle / Pipeline) ]
+        ↓
+[ Build & Test Stage ]
+        ↓
+[ Docker Build & Run (Deployment) ]
+        ↓
+[ Monitor via Console Output / Build History ]
+    </pre>
+
+    <h3>Step 1: Set Up Jenkins</h3>
+    <p>Install Jenkins on Ubuntu VM (IP: 192.168.2.129)</p>
+    <pre>
+sudo apt update && sudo apt install -y openjdk-17-jdk
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update && sudo apt install -y jenkins
+sudo systemctl start jenkins && sudo systemctl enable jenkins
+    </pre>
+    <p>Access Jenkins: http://192.168.2.129:8080</p>
+</div>
+
+<div class="box">
+    <h3>Step 2: Create a Freestyle Job</h3>
+    <ul>
+        <li>Create job: <b>testbuildqueue</b></li>
+        <li>Build Step → Execute Shell:</li>
+    </ul>
+    <pre>
+echo running the testing build queue one - i wrote it
+    </pre>
+    <p>Result: Finished: SUCCESS</p>
+</div>
+
+<div class="box">
+    <h3>Step 3: Configure Build Triggers</h3>
+    <ul>
+        <li>Create downstream job: <b>day4</b></li>
+        <li>Trigger after <b>testbuildqueue</b> (only if stable)</li>
+    </ul>
+    <pre>
+echo hello world 2
+echo i didn’t give any build now, so this is executed by the trigger
+    </pre>
+</div>
+
+<div class="box">
+    <h3>Step 4: Schedule with Cron</h3>
+    <ul>
+        <li>Job: <b>cron-1</b></li>
+        <li>Schedule: * * * * * (every minute)</li>
+    </ul>
+    <pre>
+echo A cron job every minute, this gets printed every one minute
+    </pre>
+</div>
+
+<div class="box">
+    <h3>Step 5: Create a Pipeline Job</h3>
+    <ul>
+        <li>Job: <b>firstpipeline</b></li>
+    </ul>
+    <pre>
+pipeline {
+    agent none
+    stages {
+        stage('Print Hello') {
+            steps {
+                sh 'pwd && git && ls -la'
+            }
+        }
+        stage('Docker') {
+            steps {
+                sh 'docker build -t web134'
+                sh 'docker run -d -p 5000:5000 web134'
+            }
+        }
+    }
+}
+    </pre>
+</div>
+
+<div class="box">
+    <h3>Step 6: Multi-Job Docker Deployment</h3>
+    <ul>
+        <li><b>myresumerunner-builder:</b> Clone repo</li>
+        <li><b>myresumerunner-image:</b> Build Docker image</li>
+        <li><b>myresumerunner-run:</b> Run container</li>
+    </ul>
+    <pre>
+docker build -t gognogaga
+docker run -d -p 8050:5000 gognogaga
+    </pre>
+    <p>Deployment verified via console output and Jenkins nodes.</p>
+</div>
+
+</body>
+</html>
