@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="./images/logo.svg" alt="Sneakers logo" />
+          <img src=" logo.svg" alt="Sneakers logo" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,12 +40,12 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
             <li class="nav-item">
               <a class="position-relative" id="cart-btn" aria-current="page" href="#" data-toggle="modal" data-target="#cartModal">
-                <img src="./images/icon-cart.svg" alt="shopping cart icon"/>
+                <img src=" icon-cart.svg" alt="shopping cart icon"/>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" id="badge" style="background-color:#FF7E1B;"></span>
               </a>
             </li>
             <li class="nav-item">
-              <img src="./images/image-avatar.png" alt="avatar image" class="img-fluid ms-2" style="max-width:50px;" />
+              <img src=" image-avatar.png" alt="avatar image" class="img-fluid ms-2" style="max-width:50px;" />
             </li>
           </ul>
           <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -70,16 +70,16 @@
           <!-- slides -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="./images/image-product-1.jpg" alt="shoes" class="img-fluid rounded-3">
+              <img src=" image-product-1.jpg" alt="shoes" class="img-fluid rounded-3">
             </div>
             <div class="carousel-item">
-              <img src="./images/image-product-2.jpg" alt="shoes" class="img-fluid rounded-3">
+              <img src=" image-product-2.jpg" alt="shoes" class="img-fluid rounded-3">
             </div>
             <div class="carousel-item">
-              <img src="./images/image-product-3.jpg" alt="shoes" class="img-fluid rounded-3">
+              <img src=" image-product-3.jpg" alt="shoes" class="img-fluid rounded-3">
             </div>
             <div class="carousel-item">
-              <img src="./images/image-product-4.jpg" alt="shoes" class="img-fluid rounded-3">
+              <img src=" image-product-4.jpg" alt="shoes" class="img-fluid rounded-3">
             </div>
           </div>
           <!-- Left right -->
@@ -93,22 +93,22 @@
           <ol class="carousel-indicators list-inline">
             <li class="list-inline-item active">
               <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel">
-                <img src="./images/image-product-1-thumbnail.jpg" class="img-fluid">
+                <img src=" image-product-1-thumbnail.jpg" class="img-fluid">
               </a>
             </li>
             <li class="list-inline-item">
               <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel">
-                <img src="./images/image-product-2-thumbnail.jpg" class="img-fluid">
+                <img src=" image-product-2-thumbnail.jpg" class="img-fluid">
               </a>
             </li>
             <li class="list-inline-item">
               <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel">
-                <img src="./images/image-product-3-thumbnail.jpg" class="img-fluid">
+                <img src=" image-product-3-thumbnail.jpg" class="img-fluid">
               </a>
             </li>
             <li class="list-inline-item">
               <a id="carousel-selector-3" data-slide-to="3" data-target="#custCarousel">
-                <img src="./images/image-product-4-thumbnail.jpg" class="img-fluid">
+                <img src=" image-product-4-thumbnail.jpg" class="img-fluid">
               </a>
             </li>
           </ol>
@@ -177,9 +177,9 @@ addToCartBtn.addEventListener("click", function(e) {
     if (quantity >= 1) {
         badge.textContent = quantity;
         modalBody.innerHTML = `
-        <img src="./images/image-product-1-thumbnail.jpg" class="rounded img-fluid float-start me-2" style="width:15%;">
+        <img src=" image-product-1-thumbnail.jpg" class="rounded img-fluid float-start me-2" style="width:15%;">
         <p style="color:#69707D;">Fall Limited Edition Sneakers</p>
-        <p style="color:#69707D;">$125.00 X <span id="quantity-display">${quantity}</span> <span id="total-display" color:"#000;"><strong>$${(e.target.dataset.price * quantity)}.00 </strong> <img id="delete-icon" src="./images/icon-delete.svg" style="cursor:pointer;"> </span> </p>
+        <p style="color:#69707D;">$125.00 X <span id="quantity-display">${quantity}</span> <span id="total-display" color:"#000;"><strong>$${(e.target.dataset.price * quantity)}.00 </strong> <img id="delete-icon" src=" icon-delete.svg" style="cursor:pointer;"> </span> </p>
         <button class="btn rounded p-2 text-white w-100" style="background-color:#FF7E1B">Checkout</button>
         `
         document.getElementById("delete-icon").addEventListener("click", function() {
